@@ -6,25 +6,31 @@
 /*   By: ihwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/17 16:48:37 by ihwang            #+#    #+#             */
-/*   Updated: 2020/03/18 02:41:13 by ihwang           ###   ########.fr       */
+/*   Updated: 2020/03/19 00:37:26 by ihwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_SELECT_H
 # define FT_SELECT_H
 
-#if !(getenv("TERM"))
-	
+#include "../libft/includes/libft.h"
+#include <term.h>
+#include <termios.h>
+#include <fcntl.h>
+#include <stdio.h>
+#include <limits.h>
 
-# define COL (tgetent("co"))
-# define ROW (tgetent("li"))
+# define COL (tgetnum("co"))
+# define ROW (tgetnum("li"))
 
-# define VI (tgetstr("vi", NULL))
 # define CL (tgetstr("cl", NULL))
 # define CM (tgetstr("cm", NULL))
 # define US (tgetstr("us", NULL))
 # define UE (tgetstr("ue", NULL))
 # define VE (tgetstr("ve", NULL))
+# define VI (tgetstr("vi", NULL))
+# define SO (tgetstr("so", NULL))
+# define SE (tgetstr("se", NULL))
 # define ME (tgetstr("me", NULL))
 
 # define ISSP(b) (b[0] == ' ' && b[1] == '\0')
@@ -35,13 +41,10 @@
 # define ISESC(b) (b[0] == 27 && b[1] == '\0')
 # define ISBS(b) (b[0] == 127 && b[1] == '\0')
 # define ISDE(b) (b[0] == 27 && b[1] == 91 && b[2] == '3' && b[3] == '~') 
+# define ISEN(b) (b[0] == '\n' && b[1] == '\0')
 
-#include "../libft/includes/libft.h"
-#include <term.h>
-#include <termios.h>
-#include <fcntl.h>
-#include <stdio.h>
-
+# define NEXT 1
+# define STAY 0
 
 typedef struct termios	t_term;
 
@@ -50,9 +53,9 @@ typedef struct	s_t
 	t_term		o_set;
 	int			ac;
 	int			curr;
-	int			sel;
-	int			col;
-	int			maxcol;
+	int			*sel;
+//	int			col;
+//	int			maxcol;
 	char		**av;
 	char		input[8];
 }				t_t;
