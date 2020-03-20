@@ -6,7 +6,7 @@
 /*   By: ihwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/17 16:48:37 by ihwang            #+#    #+#             */
-/*   Updated: 2020/03/19 00:37:26 by ihwang           ###   ########.fr       */
+/*   Updated: 2020/03/19 17:15:03 by ihwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,13 @@ typedef struct	s_t
 	char		input[8];
 }				t_t;
 
+t_t				g_t;
+
+void			print_args(int x, int y);
+void			parse_key(void);
+void			bs_del_key(void);
+void			enter_key(void);
+void			space_key(int opt);
+void			esc_key(int opt);
 
 #endif
