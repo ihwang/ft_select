@@ -6,7 +6,7 @@
 /*   By: ihwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 16:45:53 by ihwang            #+#    #+#             */
-/*   Updated: 2020/03/21 23:32:21 by ihwang           ###   ########.fr       */
+/*   Updated: 2020/03/22 20:25:57 by ihwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,18 @@ int			is_selected(int i)
 
 void		esc_key(int opt)
 {
-	tcsetattr(0, TCSANOW, &g_t.o_set);
+	if (opt == NOENV)
+		ft_putstr_fd("No `TERM` environment variable\n", 2);
+	else if (opt == NOARG)
+		ft_putstr_fd("No arguments\n", 2);
+	else
+	{
+		ft_putstr_fd(CL, 0);
+		ft_putstr_fd(VE, 0);
+		ft_putstr_fd(ME, 0);
+		tcsetattr(0, TCSANOW, &g_t.o_set);
+	}
 	free(g_t.sel);
-	ft_putstr_fd(VE, 0);
-	ft_putstr_fd(CL, 0);
-	ft_putstr_fd(ME, 0);
 	exit(opt);
 }
 
@@ -83,7 +90,6 @@ void		bs_del_key(void)
 {
 	int		i;
 
-	//g_t.curr = 0;
 	g_t.ac == 1 ? esc_key(0) : 0;
 	is_selected(g_t.curr) ? space_key(STAY) : 0;
 	i = -1;
@@ -98,24 +104,3 @@ void		bs_del_key(void)
 	g_t.ac--;
 	g_t.curr == g_t.ac ? g_t.curr-- : 0;
 }
-/*
-	while (g_t.av[++i])
-	{
-		if (i == g_t.curr)
-		{
-			i = i ? i : g_t.ac;
-			if (is_selected(i))
-				space_key(STAY);
-			j = -1;
-			while (g_t.sel[++j])
-				if (g_t.sel[j] > i)
-					g_t.sel[j]--;
-			i--;
-			while (g_t.av[++i])
-				g_t.av[i] = g_t.av[i + 1];
-			g_t.ac--;
-			g_t.curr == g_t.ac ? g_t.curr-- : 0;
-			return ;
-		}
-	}
-}*/

@@ -6,7 +6,7 @@
 /*   By: ihwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 16:45:00 by ihwang            #+#    #+#             */
-/*   Updated: 2020/03/21 22:20:12 by ihwang           ###   ########.fr       */
+/*   Updated: 2020/03/22 19:59:38 by ihwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	right_key(void)
 void		parse_key(void)
 {
 	if (ISESC(g_t.input))
-		esc_key(0);
+		esc_key(NORM);
 	else if (ISUP(g_t.input))
 		up_key();
 	else if (ISDW(g_t.input))
