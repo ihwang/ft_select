@@ -6,11 +6,19 @@
 /*   By: ihwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 16:45:00 by ihwang            #+#    #+#             */
-/*   Updated: 2020/03/19 17:14:04 by ihwang           ###   ########.fr       */
+/*   Updated: 2020/03/21 22:20:12 by ihwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_select.h"
+
+void		down_key(void)
+{
+	if (g_t.curr == g_t.ac - 1)
+		g_t.curr = 0;
+	else
+		g_t.curr++;
+}
 
 static void	up_key(void)
 {
@@ -18,14 +26,6 @@ static void	up_key(void)
 		g_t.curr = g_t.ac - 1;
 	else
 		g_t.curr--;
-}
-
-static void	down_key(void)
-{
-	if (g_t.curr == g_t.ac - 1)
-		g_t.curr = 0;
-	else
-		g_t.curr++;
 }
 
 static void	left_key(void)

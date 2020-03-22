@@ -6,13 +6,13 @@
 /*   By: ihwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 16:45:53 by ihwang            #+#    #+#             */
-/*   Updated: 2020/03/20 23:30:55 by ihwang           ###   ########.fr       */
+/*   Updated: 2020/03/21 23:32:21 by ihwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_select.h"
 
-static int	is_selected(int i)
+int			is_selected(int i)
 {
 	int		j;
 	int		cmp;
@@ -82,14 +82,28 @@ void		enter_key(void)
 void		bs_del_key(void)
 {
 	int		i;
-	int		j;
 
+	//g_t.curr = 0;
 	g_t.ac == 1 ? esc_key(0) : 0;
+	is_selected(g_t.curr) ? space_key(STAY) : 0;
 	i = -1;
+	while (g_t.sel[++i])
+	{
+		g_t.sel[i] > g_t.curr ? g_t.sel[i]-- : 0;
+		g_t.sel[i] = !g_t.sel[i] ? g_t.ac - 1 : g_t.sel[i];
+	}
+	i = g_t.curr - 1;
+	while (g_t.av[++i])
+		g_t.av[i] = g_t.av[i + 1];
+	g_t.ac--;
+	g_t.curr == g_t.ac ? g_t.curr-- : 0;
+}
+/*
 	while (g_t.av[++i])
 	{
 		if (i == g_t.curr)
 		{
+			i = i ? i : g_t.ac;
 			if (is_selected(i))
 				space_key(STAY);
 			j = -1;
@@ -104,4 +118,4 @@ void		bs_del_key(void)
 			return ;
 		}
 	}
-}
+}*/
