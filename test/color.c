@@ -1,41 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tputs_test.c                                       :+:      :+:    :+:   */
+/*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ihwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/15 20:15:04 by ihwang            #+#    #+#             */
-/*   Updated: 2020/03/23 00:42:00 by ihwang           ###   ########.fr       */
+/*   Created: 2020/03/23 00:42:08 by ihwang            #+#    #+#             */
+/*   Updated: 2020/03/23 00:46:16 by ihwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <term.h>
-#include <stdlib.h>
 #include <unistd.h>
 
-int	ft_putchar(int c)
+void	ft_putstr_fd(char *str, int fd)
 {
-	write(1, &c, 1);
-	return (c);
+	int	i;
+
+	i = -1;
+	while (str[++i])
+		write(fd, &str[i], 1);
 }
 
 int main(void)
 {
-	char *str;
-//	char *foo;
 
-//	str = tgetstr("cm", NULL);
-
-	str = tgetstr("cl", NULL);
-//	foo = tgoto(str, 0, 0);
-
-	tputs(str, 2, ft_putchar);
-
+	ft_putstr_fd("\033[0;31m", 0);
+	ft_putstr_fd("HI\n", 0);
+	ft_putstr_fd("\033[0m", 0);
 	return (0);
 }
-
-
-
-

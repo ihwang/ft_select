@@ -1,41 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tputs_test.c                                       :+:      :+:    :+:   */
+/*   read_test.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ihwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/15 20:15:04 by ihwang            #+#    #+#             */
-/*   Updated: 2020/03/23 00:42:00 by ihwang           ###   ########.fr       */
+/*   Created: 2020/03/23 14:07:51 by ihwang            #+#    #+#             */
+/*   Updated: 2020/03/23 14:18:36 by ihwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <term.h>
-#include <stdlib.h>
 #include <unistd.h>
-
-int	ft_putchar(int c)
-{
-	write(1, &c, 1);
-	return (c);
-}
+#include <fcntl.h>
+#include <stdio.h>
+#include <string.h>
 
 int main(void)
 {
-	char *str;
-//	char *foo;
+	char buf[999999];
+	int	fd;
 
-//	str = tgetstr("cm", NULL);
+	printf("%s\n", ttyname(1));
+	fd = open(ttyname(1), O_RDWR);
 
-	str = tgetstr("cl", NULL);
-//	foo = tgoto(str, 0, 0);
+	bzero(buf, sizeof(buf));
+	read(fd, buf, sizeof(buf));
+	printf("%s\n", buf);
 
-	tputs(str, 2, ft_putchar);
 
 	return (0);
 }
-
-
-
-

@@ -1,41 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tputs_test.c                                       :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ihwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/15 20:15:04 by ihwang            #+#    #+#             */
-/*   Updated: 2020/03/23 00:42:00 by ihwang           ###   ########.fr       */
+/*   Created: 2020/03/23 01:07:47 by ihwang            #+#    #+#             */
+/*   Updated: 2020/03/23 01:50:09 by ihwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <term.h>
-#include <stdlib.h>
+#include <stdio.h>
 #include <unistd.h>
+#include <stdlib.h>
 
-int	ft_putchar(int c)
+void	ft_putstr_fd(char *str, int fd)
 {
-	write(1, &c, 1);
-	return (c);
+	int	i;
+
+	i = -1;
+	while (str[++i])
+		write(fd, &str[i], 1);
 }
 
 int main(void)
 {
-	char *str;
-//	char *foo;
+	tgetent(NULL, getenv("TERM"));
+	ft_putstr_fd(tgoto(tgetstr("cm", NULL), 0, 0), 0);
 
-//	str = tgetstr("cm", NULL);
-
-	str = tgetstr("cl", NULL);
-//	foo = tgoto(str, 0, 0);
-
-	tputs(str, 2, ft_putchar);
-
+	ft_putstr_fd(tgetstr("dl", NULL), 0);
 	return (0);
 }
-
-
-
-

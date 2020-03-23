@@ -6,7 +6,7 @@
 /*   By: ihwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/17 16:48:37 by ihwang            #+#    #+#             */
-/*   Updated: 2020/03/22 20:26:48 by ihwang           ###   ########.fr       */
+/*   Updated: 2020/03/23 13:54:16 by ihwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,13 @@
 #include <stdio.h>
 #include <limits.h>
 #include <sys/ioctl.h>
+#include <sys/stat.h>
 
 # define COL (tgetnum("co"))
 # define ROW (tgetnum("li"))
 # define CL (tgetstr("cl", NULL))
 # define CM (tgetstr("cm", NULL))
+# define DL (tgetstr("dl", NULL)) ///
 # define US (tgetstr("us", NULL))
 # define UE (tgetstr("ue", NULL))
 # define VE (tgetstr("ve", NULL))
@@ -46,8 +48,17 @@
 # define NORM 0
 # define NOARG 1
 # define NOENV 2
+# define INIT "\033[0m"
+# define BOLD "\033[1m"
+# define RED "\033[31m"
+# define GREN "\033[32m"
+# define YELW "\033[33m"
+# define BLUE "\033[34m"
+# define MGTA "\033[35m"
+# define CYAN "\033[36m"
 
 typedef struct termios	t_term;
+typedef struct stat		t_stat;
 
 typedef struct			s_t
 {
