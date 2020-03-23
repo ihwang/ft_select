@@ -6,7 +6,7 @@
 /*   By: ihwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/17 16:48:37 by ihwang            #+#    #+#             */
-/*   Updated: 2020/03/23 13:54:16 by ihwang           ###   ########.fr       */
+/*   Updated: 2020/03/23 15:46:04 by ihwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 # define ROW (tgetnum("li"))
 # define CL (tgetstr("cl", NULL))
 # define CM (tgetstr("cm", NULL))
-# define DL (tgetstr("dl", NULL)) ///
 # define US (tgetstr("us", NULL))
 # define UE (tgetstr("ue", NULL))
 # define VE (tgetstr("ve", NULL))
@@ -46,8 +45,8 @@
 # define STAY 0
 # define NEXT 1
 # define NORM 0
-# define NOARG 1
-# define NOENV 2
+# define NOARG -1
+# define NOENV -2
 # define INIT "\033[0m"
 # define BOLD "\033[1m"
 # define RED "\033[31m"

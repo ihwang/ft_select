@@ -6,7 +6,7 @@
 /*   By: ihwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 16:43:13 by ihwang            #+#    #+#             */
-/*   Updated: 2020/03/23 13:53:38 by ihwang           ###   ########.fr       */
+/*   Updated: 2020/03/23 15:39:46 by ihwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void		print_args(int x, int y)
 
 	i = -1;
 	max = 0;
-	//ft_putstr_fd(CL, 0);
+	ft_putstr_fd(CL, 0);
 	while (++i < g_t.ac)
 	{
 		max = max > ft_strlen(g_t.av[i]) + x ? max : ft_strlen(g_t.av[i]) + x;
