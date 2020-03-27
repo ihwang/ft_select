@@ -6,7 +6,7 @@
 /*   By: ihwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 16:48:44 by ihwang            #+#    #+#             */
-/*   Updated: 2020/03/22 20:27:13 by ihwang           ###   ########.fr       */
+/*   Updated: 2020/03/27 17:18:13 by ihwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static void	tstp_handler(int a)
 	char	cc[2];
 
 	(void)a;
-	ft_putstr_fd(VE, 0);
-	ft_putstr_fd(ME, 0);
+	ft_putstr_fd(tgetstr("ve", NULL), 0);
+	ft_putstr_fd(tgetstr("me", NULL), 0);
 	cc[0] = g_t.o_set.c_cc[VSUSP];
 	cc[1] = '\0';
 	tcsetattr(0, TCSANOW, &g_t.o_set);
@@ -35,8 +35,8 @@ static void	cont_handler(int a)
 		esc_key(NOENV);
 	n_set = g_t.o_set;
 	n_set.c_lflag &= ~(ICANON | ECHO);
-	ft_putstr_fd(CL, 0);
-	ft_putstr_fd(VI, 0);
+	ft_putstr_fd(tgetstr("cl", NULL), 0);
+	ft_putstr_fd(tgetstr("vi", NULL), 0);
 	tcsetattr(0, TCSANOW, &n_set);
 	sig_set();
 	print_args(0, -1);
@@ -59,4 +59,3 @@ void		sig_set(void)
 	signal(SIGTSTP, tstp_handler);
 	signal(SIGCONT, cont_handler);
 }
-

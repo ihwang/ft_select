@@ -6,7 +6,7 @@
 /*   By: ihwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 16:45:53 by ihwang            #+#    #+#             */
-/*   Updated: 2020/03/23 15:48:56 by ihwang           ###   ########.fr       */
+/*   Updated: 2020/03/27 16:21:19 by ihwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void		esc_key(int opt)
 		ft_putstr_fd("No arguments\n", 2);
 	else
 	{
-		ft_putstr_fd(CL, 0);
-		ft_putstr_fd(VE, 0);
-		ft_putstr_fd(ME, 0);
+		ft_putstr_fd(tgetstr("cl", NULL), 0);
+		ft_putstr_fd(tgetstr("ve", NULL), 0);
+		ft_putstr_fd(tgetstr("me", NULL), 0);
 		tcsetattr(0, TCSANOW, &g_t.o_set);
 	}
 	free(g_t.sel);
@@ -73,9 +73,9 @@ void		enter_key(void)
 
 	tcsetattr(0, TCSANOW, &g_t.o_set);
 	free(g_t.sel);
-	ft_putstr_fd(VE, 0);
-	ft_putstr_fd(CL, 0);
-	ft_putstr_fd(ME, 0);
+	ft_putstr_fd(tgetstr("ve", NULL), 0);
+	ft_putstr_fd(tgetstr("cl", NULL), 0);
+	ft_putstr_fd(tgetstr("me", NULL), 0);
 	i = -1;
 	while (g_t.av[++i])
 		if (is_selected(i))

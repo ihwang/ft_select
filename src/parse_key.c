@@ -6,7 +6,7 @@
 /*   By: ihwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/23 02:43:47 by ihwang            #+#    #+#             */
-/*   Updated: 2020/03/23 02:43:48 by ihwang           ###   ########.fr       */
+/*   Updated: 2020/03/27 17:17:47 by ihwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,36 +30,38 @@ static void	up_key(void)
 
 static void	left_key(void)
 {
-	if (g_t.curr - ROW < 0)
+	if (g_t.curr - tgetnum("li") < 0)
 		g_t.curr = 0;
 	else
-		g_t.curr = g_t.curr - ROW;
+		g_t.curr = g_t.curr - tgetnum("li");
 }
 
 static void	right_key(void)
 {
-	if (g_t.curr + ROW >= g_t.ac)
+	if (g_t.curr + tgetnum("li") >= g_t.ac)
 		g_t.curr = g_t.ac - 1;
 	else
-		g_t.curr = g_t.curr + ROW;
+		g_t.curr = g_t.curr + tgetnum("li");
 }
 
 void		parse_key(void)
 {
-	if (ISESC(g_t.input))
+	if (g_t.input[0] == 27 && g_t.input[1] == '\0')
 		esc_key(NORM);
-	else if (ISUP(g_t.input))
+	else if (g_t.input[0] == 27 && g_t.input[1] == 91 && g_t.input[2] == 'A')
 		up_key();
-	else if (ISDW(g_t.input))
+	else if (g_t.input[0] == 27 && g_t.input[1] == 91 && g_t.input[2] == 'B')
 		down_key();
-	else if (ISLE(g_t.input))
+	else if (g_t.input[0] == 27 && g_t.input[1] == 91 && g_t.input[2] == 'D')
 		left_key();
-	else if (ISRT(g_t.input))
+	else if (g_t.input[0] == 27 && g_t.input[1] == 91 && g_t.input[2] == 'C')
 		right_key();
-	else if (ISBS(g_t.input) || ISDE(g_t.input))
+	else if ((g_t.input[0] == 127 && g_t.input[1] == '\0') ||
+		(g_t.input[0] == 27 && g_t.input[1] == 91 && g_t.input[2] == '3' &&
+		g_t.input[3] == '~'))
 		bs_del_key();
-	else if (ISSP(g_t.input))
+	else if (g_t.input[0] == ' ' && g_t.input[1] == '\0')
 		space_key(NEXT);
-	else if (ISEN(g_t.input))
+	else if (g_t.input[0] == '\n' && g_t.input[1] == '\0')
 		enter_key();
 }

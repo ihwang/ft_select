@@ -6,12 +6,11 @@
 /*   By: ihwang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/17 16:52:55 by ihwang            #+#    #+#             */
-/*   Updated: 2020/03/23 13:54:23 by ihwang           ###   ########.fr       */
+/*   Updated: 2020/03/27 16:35:16 by ihwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_select.h"
-
 
 static void	init(int ac, char **av)
 {
@@ -26,8 +25,8 @@ static void	init(int ac, char **av)
 	g_t.curr = 0;
 	g_t.sel = (int*)malloc(sizeof(int) * (g_t.ac + 1));
 	ft_bzero(g_t.sel, sizeof(int) * (g_t.ac + 1));
-	ft_putstr_fd(CL, 0);
-	ft_putstr_fd(VI, 0);
+	ft_putstr_fd(tgetstr("cl", NULL), 0);
+	ft_putstr_fd(tgetstr("vi", NULL), 0);
 	sig_set();
 }
 
@@ -45,6 +44,5 @@ int			main(int ac, char **av)
 		read(0, g_t.input, sizeof(g_t.input));
 		parse_key();
 	}
-	printf("%d\n", ROW);
 	return (0);
 }
